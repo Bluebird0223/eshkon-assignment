@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+import { Suspense } from 'react';
+
+function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
@@ -92,15 +94,24 @@ export default function LoginPage() {
                     {loading ? 'Authenticating...' : 'Sign In'}
                 </button>
             </form>
-
-            {/* <div className="mt-8 pt-6 border-t border-gray-50 flex justify-between items-center">
-                <p className="text-xs text-gray-400 italic">Demo accounts included in seed.</p>
-                <div className="flex gap-2">
-                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                    <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse delay-75" />
-                    <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse delay-150" />
-                </div>
-            </div> */}
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={
+            <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 animate-pulse">
+                <div className="h-8 w-48 bg-gray-200 rounded mb-4" />
+                <div className="h-4 w-64 bg-gray-100 rounded mb-8" />
+                <div className="space-y-4">
+                    <div className="h-12 bg-gray-50 rounded-xl" />
+                    <div className="h-12 bg-gray-50 rounded-xl" />
+                    <div className="h-12 bg-blue-100 rounded-xl mt-4" />
+                </div>
+            </div>
+        }>
+            <LoginForm />
+        </Suspense>
     );
 }
