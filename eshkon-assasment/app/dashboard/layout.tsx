@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { authOptions } from '@/lib/auth';
 import LogoutButton from '@/components/auth/LogoutButton';
+import { LayoutDashboard, FileText, Users } from 'lucide-react';
 
 export default async function DashboardLayout({
     children,
@@ -16,12 +17,12 @@ export default async function DashboardLayout({
     const isAdmin = ['admin', 'super_admin'].includes(role);
 
     const navItems = [
-        { label: 'Dashboard', href: '/dashboard', icon: '📊' },
-        { label: 'Pages', href: '/dashboard/pages', icon: '📄' },
+        { label: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard /> },
+        { label: 'Pages', href: '/dashboard/pages', icon: <FileText /> },
     ];
 
     if (isAdmin) {
-        navItems.push({ label: 'Users', href: '/dashboard/admin/users', icon: '👥' });
+        navItems.push({ label: 'Users', href: '/dashboard/admin/users', icon: <Users /> });
     }
 
     return (
@@ -30,7 +31,7 @@ export default async function DashboardLayout({
             <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
                 <div className="p-6">
                     <Link href="/dashboard" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                        ContentHub
+                        Eshkon
                     </Link>
                 </div>
                 <nav className="flex-1 px-4 space-y-1">
@@ -40,7 +41,7 @@ export default async function DashboardLayout({
                             href={item.href}
                             className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all group"
                         >
-                            <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                            <span className="text-xl group-hover:scale-102 transition-transform">{item.icon}</span>
                             <span className="font-medium">{item.label}</span>
                         </Link>
                     ))}

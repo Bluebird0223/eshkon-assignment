@@ -5,6 +5,7 @@ import { db } from '@/lib/db';
 import { pages } from '@/lib/db/schema';
 import { desc, eq, and } from 'drizzle-orm';
 import { authOptions, hasPermission, Role } from '@/lib/auth';
+import { Link2 } from 'lucide-react';
 
 export default async function PagesPage() {
     const session = await getServerSession(authOptions);
@@ -40,7 +41,7 @@ export default async function PagesPage() {
                 </div>
                 {hasPermission(role, 'page:create') && (
                     <Link href="/dashboard/pages/new" className="px-5 py-2.5 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-sm flex items-center gap-2">
-                        <span>➕</span> New Page
+                        <span>+</span> New Page
                     </Link>
                 )}
             </div>
@@ -72,7 +73,7 @@ export default async function PagesPage() {
                             <div className="flex gap-2">
                                 {hasPermission(role, 'page:view') && (
                                     <Link href={`/pages/${page.slug}`} target="_blank" className="p-2 text-black hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-all" title="View Public Page">
-                                        🔗
+                                        <Link2 className="w-6 h-6" />
                                     </Link>
                                 )}
                                 {hasPermission(role, 'page:edit') && (

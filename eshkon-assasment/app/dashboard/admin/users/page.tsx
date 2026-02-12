@@ -57,7 +57,7 @@ export default async function AdminUsersPage() {
                                         {user.role.replace('_', ' ')}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4">
+                                <td className="px-6 py-4 text-black text-center">
                                     <UserRoleManager userId={user.id} currentRole={user.role} />
                                 </td>
                             </tr>

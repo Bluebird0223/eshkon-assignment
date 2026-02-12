@@ -6,7 +6,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 
 interface Props {
     content: any;
-    onChange: (content: any) => void;
+    onChange?: (content: any) => void;
     editable?: boolean;
 }
 
@@ -21,7 +21,11 @@ export default function RichTextEditor({ content, onChange, editable = true }: P
         ],
         content,
         editable,
-        onUpdate: ({ editor }) => onChange(editor.getJSON()),
+        onUpdate: ({ editor }) => {
+            if (onChange) {
+                onChange(editor.getJSON());
+            }
+        },
     });
 
     if (!editor) return null;
@@ -98,16 +102,22 @@ export default function RichTextEditor({ content, onChange, editable = true }: P
             </div>
 
             <style jsx global>{`
-                .tiptap p.is-editor-empty:first-child::before {
-                    color: #adb5bd;
-                    content: attr(data-placeholder);
-                    float: left;
-                    height: 0;
-                    pointer-events: none;
-                }
-                .tiptap:focus {
-                    outline: none;
-                }
+                 .tiptap {
+    color: #000;
+    caret-color: #000;
+  }
+
+  .tiptap p.is-editor-empty:first-child::before {
+    color: #2b2b2bff;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  .tiptap:focus {
+    outline: none;
+  }
             `}</style>
         </div>
     );

@@ -6,6 +6,7 @@ import { pages, users } from '@/lib/db/schema';
 import { count, eq, sql } from 'drizzle-orm';
 import { authOptions, Role } from '@/lib/auth';
 
+
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect('/login');
@@ -33,9 +34,9 @@ export default async function DashboardPage() {
     }
 
     const cards = [
-        { label: 'Total Pages', value: pagesCount.value, color: 'bg-blue-500' },
-        { label: 'Published', value: publishedCount.value, color: 'bg-green-500' },
-        { label: 'Drafts', value: draftCount.value, color: 'bg-yellow-500' },
+        { label: 'Total Pages', value: pagesCount.value },
+        { label: 'Published', value: publishedCount.value },
+        { label: 'Drafts', value: draftCount.value },
     ];
 
     return (
@@ -50,13 +51,13 @@ export default async function DashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {cards.map((card) => (
                     <div key={card.label} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">{card.label}</p>
-                                <p className="text-4xl font-bold mt-2 text-gray-900">{card.value}</p>
-                            </div>
-                            <div className={`${card.color} w-10 h-10 rounded-lg opacity-20`} />
+                        <div className="flex justify-between items-center">
+                            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">{card.label}</p>
+                            <p className="text-4xl font-bold mt-2 text-gray-900">{card.value}</p>
                         </div>
+                        {/* <div className="flex justify-between items-center">
+
+                        </div> */}
                     </div>
                 ))}
             </div>
@@ -67,14 +68,14 @@ export default async function DashboardPage() {
                         <h3 className="text-lg text-black font-bold mb-4">User Statistics</h3>
                         <div className="space-y-4">
                             <div className="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-                                <span className="font-medium">Total Users</span>
-                                <span className="text-2xl font-bold">{userStats.total}</span>
+                                <span className="font-medium text-gray-900">Total Users</span>
+                                <span className="text-2xl font-bold text-gray-900">{userStats.total}</span>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 {userStats.roles.map((r) => (
                                     <div key={r.role} className="p-3 border rounded-xl">
-                                        <p className="text-xs text-gray-500 uppercase">{r.role.replace('_', ' ')}</p>
-                                        <p className="text-xl font-bold">{r.count}</p>
+                                        <p className="text-xs text-gray-500 uppercase text-gray-900">{r.role.replace('_', ' ')}</p>
+                                        <p className="text-xl font-bold text-gray-900">{r.count}</p>
                                     </div>
                                 ))}
                             </div>
@@ -83,7 +84,7 @@ export default async function DashboardPage() {
 
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
                         <div>
-                            <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
+                            <h3 className="text-lg text-black font-bold mb-4">Quick Actions</h3>
                             <div className="space-y-3">
                                 <Link href="/dashboard/pages" className="flex items-center gap-3 p-3 hover:bg-blue-50 text-blue-600 rounded-xl transition-colors group">
                                     <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center group-hover:bg-blue-200">📄</div>

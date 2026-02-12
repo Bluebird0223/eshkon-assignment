@@ -65,7 +65,7 @@ export default function LoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="name@example.com"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-4 py-3 text-black rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     />
                 </div>
 
@@ -80,14 +80,14 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        className="w-full px-4 py-3 text-black rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     />
                 </div>
 
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all disabled:opacity-50 disabled:shadow-none mt-4"
+                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all disabled:opacity-50 disabled:shadow-none mt-4 cursor-pointer"
                 >
                     {loading ? 'Authenticating...' : 'Sign In'}
                 </button>

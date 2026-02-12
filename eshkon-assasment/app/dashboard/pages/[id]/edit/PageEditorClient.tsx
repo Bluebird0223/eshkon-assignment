@@ -33,12 +33,12 @@ export default function PageEditorClient({ initialPage, userRole }: { initialPag
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-bold">{page.title}</h1>
+                <h1 className="text-2xl font-bold text-black">{page.title}</h1>
                 <div className="flex gap-2">
                     <button
                         onClick={() => save('draft')}
                         disabled={saving}
-                        className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                        className="px-4 py-2 text-black bg-gray-100 rounded hover:bg-gray-200"
                     >
                         Save Draft
                     </button>
