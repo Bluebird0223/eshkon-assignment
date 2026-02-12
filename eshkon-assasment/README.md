@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eshkon - Premium RBAC Content Platform
 
-## Getting Started
+Eshkon is a modern, high-performance content management platform built with Next.js 16, featuring a multi-level Role-Based Access Control (RBAC) system and a rich WYSIWYG page builder.
 
-First, run the development server:
+## ✨ Core Features
 
+### 🔐 Multi-Level RBAC
+- **Super Admin**: Full system access, including user role management and all content permissions.
+- **Admin**: Can manage all pages, preview drafts, and publish content.
+- **Editor**: Can create, edit, and manage their own page drafts.
+- **Viewer**: Read-only access to the dashboard and public pages.
+
+### 📝 WYSIWYG Page Builder
+- **Rich Text Editor**: Integrated Tiptap editor with support for headings, lists, code blocks, and blockquotes.
+- **Auto-slugging**: Real-time URL-friendly slug generation from page titles.
+- **Draft/Publish Flow**: Secure workflow for content creation and approval.
+
+### 📊 Modern Dashboard
+- **Dynamic Statistics**: Overview of total pages, published status, and user distribution.
+- **Premium UI**: Clean, responsive layout using Tailwind CSS and Lucide icons.
+
+## 🛠️ Tech Stack
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Database**: [PostgreSQL (Neon)](https://neon.tech/)
+- **ORM**: [Drizzle ORM](https://orm.drizzle.team/)
+- **Authentication**: [NextAuth.js](https://next-auth.js.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Editor**: [Tiptap](https://tiptap.dev/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- Node.js 18+
+- A Neon PostgreSQL database
+
+### 2. Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Bluebird0223/eshkon-assignment.git
+cd eshkon-assignment
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Environment Setup
+Create a `.env.local` file in the root directory:
+```env
+DATABASE_URL="your_neon_connection_string"
+NEXTAUTH_SECRET="your_random_secret"
+NEXTAUTH_URL="http://localhost:3000"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Database Setup & Seeding
+```bash
+# Push schema to database
+npx drizzle-kit push
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Seed the database with test users
+npm run seed
+```
 
-## Learn More
+### 5. Run Development Server
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🧪 Test Users
+| Email | Password | Role |
+| :--- | :--- | :--- |
+| `super@example.com` | `password123` | Super Admin |
+| `admin@example.com` | `password123` | Admin |
+| `editor@example.com` | `password123` | Editor |
+| `viewer@example.com` | `viewer123` | Viewer |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📦 Deployment on Vercel
+For detailed instructions on deploying to Vercel, please refer to [deployment.md](./deployment.md).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Maintenance & Compatibility
+This project is optimized for **Next.js 15/16+**:
+- Handles asynchronous `params` and `searchParams`.
+- Optimized for **Edge Runtime** compatibility.
+- Fixed SSR hydration for rich text components.
